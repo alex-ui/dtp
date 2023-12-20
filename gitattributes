@@ -1,0 +1,8 @@
+name: DTP
+description: Syntax highlighting for DTP files
+extensions:
+  - .dtp
+tm_scope: source.dtp
+aliases:
+  - dtp
+language: DTP
