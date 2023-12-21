@@ -2,7 +2,7 @@ import argparse
 
 def evaluate_expression(part, variables):
     for var_name, var_value in variables.items():
-        if (var_value != '?'):
+        if (var_value != None):
             try:
                 result = eval(part, {}, variables)
                 return str(result)
@@ -38,7 +38,7 @@ def execute_dtp(file_name):
                         
                             variables[var_name] = eval(value)
                         else:
-                            variables[var_name] = '?' # It would be better if its value was None
+                            variables[var_name] = None # It would be better if its value was None
                 elif line.startswith('.∿'):
                     line = line[2:].rstrip('¤')  # Remove '.∿' and ending '¤'
 
