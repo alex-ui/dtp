@@ -1,11 +1,15 @@
 import argparse
 
 def evaluate_expression(part, variables):
-    try:
-        result = eval(part, {}, variables)
-        return str(result)
-    except (SyntaxError, ZeroDivisionError, NameError) as e:
-        return '?'
+    for var_name, var_value in variables.items():
+        if (var_value != '?'):
+            try:
+                result = eval(part, {}, variables)
+                return str(result)
+            except (SyntaxError, ZeroDivisionError, NameError) as e:
+                return '?'
+        else:
+            return '?'
 
 def execute_dtp(file_name):
     with open(file_name, 'r', encoding='utf-8') as file:
@@ -25,12 +29,16 @@ def execute_dtp(file_name):
                         if '=' in part:
                             var_name, value = part.split('=')
                         else:
-                            var_name, value = part.split()
+                            var_name, *value = part.split()
+                            value = ' '.join(value) if value else None
 
-                        var_name = var_name.strip()
-                        value = value.strip()
-
-                        variables[var_name] = eval(value)
+                        if (value != None):
+                            var_name = var_name.strip()
+                            value = value.strip()
+                        
+                            variables[var_name] = eval(value)
+                        else:
+                            variables[var_name] = '?' # It would be better if its value was None
                 elif line.startswith('.∿'):
                     line = line[2:].rstrip('¤')  # Remove '.∿' and ending '¤'
 
@@ -107,7 +115,10 @@ def execute_dtp(file_name):
                                     print_parts.append(part)
                                 elif part in variables:
                                     # If it's a variable name, append its value
-                                    print_parts.append(str(variables[part]))
+                                    if (variables[part] != None):
+                                        print_parts.append(str(variables[part]))
+                                    else:
+                                        print_parts.append('?')
                                 else:
                                     # Unrecognized, print '?'
                                     print_parts.append('?')
