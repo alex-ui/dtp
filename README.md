@@ -2,7 +2,7 @@
 Dot-Peachy elang.
 
 ## Summary
-This language is what is known as an [esoteric programming language](https://en.wikipedia.org/wiki/Esoteric_programming_language). One of the unique features it has is that a lot of its keywords mimic the shape of the word whose meaning is exactly the function.
+This language is what is known as an [esoteric programming language](https://en.wikipedia.org/wiki/Esoteric_programming_language). One of the unique features it has is that a lot of its keywords mimic the shape of the word whose meaning is exactly the function. Additionally, it's able to call and print variables using their index slot value.
 
 ## Syntax
 ### Basics
@@ -15,6 +15,8 @@ Variables, like in any other programming language, have data types. There's a li
 
 Multiple variables within the same data type line are separated by commas (example: ```dtp .: foo 12, bar 24¤```).
 
+Each variable has its own ID, based on the order of declaration. These IDs are stored as index slots, starting at zero.
+
 ### Functions
 DTP has [functions](https://en.wikipedia.org/wiki/Function_(computer_programming)). There are two types of functions:
 #### Standard functions
@@ -26,5 +28,25 @@ These functions are included in the DTP standard library. Here's the current lis
     * Arguments separated by semicolons (";").
     * Variable names within « and » are taken as string literals to avoid issues.
     * Undeclared variables that have been called by their names in ``` dtp:* ``` are printed as "?".
+    * Variable names, values or index slot values can all be printed using various methods. The dot and the underscore serve different purposes: a dot before a variable's name or ID would print the variable's name, while an underscore prints its index slot value if it's before a variable's name (and viceversa). If none are written, a variable's name will print its value, unless it's within « and » (like mentioned before, it'd be treated as a string literal), and an index slot value will just print the number (since it's literally just an integer number, completely unrelated to variable logic). The following arguments are all the possible the cases:
+    	 1. :*(«foo») -> prints "foo" (not interpreted as a variable name, it's just another word).
+      2. :*(.foo) -> prints "foo" (this is redundant, will print its ID in the future).
+      3. :*(.0) -> prints "foo".
+      4. :*(foo) -> prints "12".
+      5. :*(_foo) -> prints "12".
+      6. :*(_0) -> prints "12".
+      7. :*(12) -> prints "12" (because this is just an integer being printed, not a variable).
+      8. :*(«12») -> prints "12" (also interpreted as a "word", or, at least, as a string. A one-digit number would be a character if this data type existed).
+      9. :*(_foo) -> prints "0" (the ID where "foo" is, which is the first one in this case, 0. Since just printing the variable name already prints its value, we can use the underscore for this).
+      10. :*(0) -> prints "0" (same case as ```:*(12)```, it's just interpreted as a regular integer number).
+      
 #### Custom functions
 These functions are user-defined. They haven't been implemented yet.
+
+# TODO
+- Be able to print special characters with "|".
+- If the print function only has "|" or that plus a non-special character, it'll result in an error.
+- Make syntax, "compiler" (more like "interpreter") and execution errors.
+- IMPLEMENT. FUNCTIONS. NOW.
+- Make single character variable (char) and change this readme once it's done.
+- Some other stuff (lazy).
