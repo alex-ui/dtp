@@ -100,8 +100,15 @@ def execute_dtp(file_name):
                                 else:
                                     print_parts.append('?')
                             elif var_ref in variables:
-                                    value = variables[var_ref]
-                                    print_parts.append(str(variables[var_names[index]]))
+                                    # value = variables[var_ref]
+                                    # print_parts.append(str(value))
+
+                                    # Check if the variable name exists and retrieve its index if found
+                                    index = next((i for i, var_name in enumerate(variables.keys()) if var_name == var_ref), None)
+                                    if index is not None:
+                                        print_parts.append(str(index))
+                                    else:
+                                        print_parts.append('?')
                             else:
                                 print_parts.append('?')
                         else:
