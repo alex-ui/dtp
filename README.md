@@ -42,11 +42,3 @@ These functions are included in the DTP standard library. Here's the current lis
       
 #### Custom functions
 These functions are user-defined. They haven't been implemented yet.
-
-# TODO
-- Be able to print special characters with "|".
-- If the print function only has "|" or that plus a non-special character, it'll result in an error.
-- Make syntax, "compiler" (more like "interpreter") and execution errors.
-- IMPLEMENT. FUNCTIONS. NOW.
-- Make single character variable (char) and change this readme once it's done.
-- Some other stuff (lazy).
