@@ -10,6 +10,7 @@ I sure hope all of these will be done... eventually.
 - [ ] Make syntax, "compiler" (more like "interpreter") and execution errors.
 - [ ] IMPLEMENT. FUNCTIONS. NOW.
 - [ ] Make single character variable (char) and change this readme once it's done.
+- [ ] Create a library for the "standard" functions (like the print function), for a cleaner interpreter main file.
 
 ### In progress
 - [ ] Some other stuff (lazy).
