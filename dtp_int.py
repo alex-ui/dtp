@@ -53,8 +53,8 @@ def execute_dtp(file_name):
                         var_name = var_name.strip()
                         value = value.strip()
 
-                        if value.endswith('»'):
-                            value = value[:-1]  # Remove the ending '»'
+                        if value.startswith('«') and value.endswith('»'):
+                            value = value[1:-1]  # Remove the starting '«' and ending '»'
 
                             if var_name not in variables:
                                 variables[var_name] = value
